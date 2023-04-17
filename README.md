@@ -1,2 +1,2 @@
 # ropasc
-Rock-Papper-scissors 
+Rock-Papper-scissors for Odin project
