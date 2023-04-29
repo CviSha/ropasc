@@ -6,8 +6,8 @@ function genSign() {
 }
 
 function playRopasc(player_sign) {
-	const opponentSign = genSign()
-	let round_status = ''
+	const opponentSign = genSign();
+	let round_status = '';
 	if (player_sign === opponentSign) {
 		round_status = 'TIE'
 	} else {
@@ -35,7 +35,7 @@ function playRopasc(player_sign) {
 				break;
 		} 
 	}
-	let ans = `You show ${player_sign}, your opponents shows ${opponentSign}.${round_status}`
+	let ans = `You show ${player_sign}, your opponents shows ${opponentSign}.${round_status}`;
 	return ans
 }
 
