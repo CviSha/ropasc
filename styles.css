@@ -1,0 +1,36 @@
+#container {
+	width: 500px;
+	height: 450px;
+	border: red 10px solid;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.row {
+	border: blue 3px solid;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.score {
+	height: 60px;
+	width: 60px;
+	background-color: gray;
+	border-radius: 3px;
+}
+
+.comp-scores, .player-scores {
+	gap: 10px;
+}
+.player-sign {
+	gap: 15px;
+}
+.signBox {
+	height: 80px;
+	width: 80px;
+	border-radius: 4px;
+	background-color: aqua;
+}

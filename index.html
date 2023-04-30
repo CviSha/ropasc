@@ -2,10 +2,38 @@
 <html lang="en">
   <head>
   	  <meta charset="UTF-8">
-  	  <title>My First Webpage</title>
+  	  <link rel="stylesheet" href="styles.css">
+  	  <title>Play RoPaSc!</title>
   </head>
   <body>
-  	<h1>HelloWorld!</h1>
+  	<h1>RockPaperScisors</h1>
+  	<div id='container'>
+  		<div class='comp-scores row'>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  		</div>
+  		<div class='comp-sign row'>
+  			<div class='comp-signBox signBox'></div>
+  		</div>
+  		<div class='player-sign row'>
+  			<button id='Rock' class='rock-choose signBox'>Rock</button>
+  			<button id='Papper' class='paper-choose signBox'>Paper</button>
+  			<button id='Scissors' class='scisors-choose signBox'>Scissors</button>
+  		</div>
+  		<div class='player-scores row'>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  			<div class='score'></div>
+  		</div>
+  	</div>
+  	
   	<script src="ropasc.js"></script>
   </body>
 </html>
+
+

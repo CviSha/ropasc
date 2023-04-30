@@ -39,3 +39,12 @@ function playRopasc(player_sign) {
 	return ans
 }
 
+const container = document.querySelector('#container');
+
+const playerSignButtons = document.querySelectorAll('.player-sign button')
+playerSignButtons.forEach((btn) => {btn.addEventListener('click', () => alert(btn.id))});
+	
+
+
+
+
