@@ -36,13 +36,14 @@ function playRopasc(player_sign) {
 		} 
 	}
 	let ans = `You show ${player_sign}, your opponents shows ${opponentSign}.${round_status}`;
+	console.log(ans)
 	return ans
 }
 
 const container = document.querySelector('#container');
 
 const playerSignButtons = document.querySelectorAll('.player-sign button')
-playerSignButtons.forEach((btn) => {btn.addEventListener('click', () => alert(btn.id))});
+playerSignButtons.forEach((btn) => {btn.addEventListener('click', () => playRopasc(btn.id))});
 	
 
 
