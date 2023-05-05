@@ -1,12 +1,16 @@
 
 
 function genSign() {
-	const signs = ['Rock','Papper','Scissors']
+	const signs = ['Rock','Paper','Scissors']
 	return signs[Math.floor(Math.random()*3)]
 }
 
 function playRopasc(player_sign) {
 	const opponentSign = genSign();
+
+
+
+
 	let round_status = '';
 	if (player_sign === opponentSign) {
 		round_status = 'TIE'
@@ -19,7 +23,7 @@ function playRopasc(player_sign) {
 					round_status = 'You Loose!'
 				}
 				break;
-			case 'Papper':
+			case 'Paper':
 				if (opponentSign === 'Rock') {
 					round_status = 'You Win!'
 				} else {
@@ -27,7 +31,7 @@ function playRopasc(player_sign) {
 				}
 				break;
 			case 'Scissors':
-				if (opponentSign === 'Papper') {
+				if (opponentSign === 'Paper') {
 					round_status = 'You Win!'
 				} else {
 					round_status = 'You Loose!'
@@ -40,10 +44,29 @@ function playRopasc(player_sign) {
 	return ans
 }
 
-const container = document.querySelector('#container');
+function clickRock() {
+	console.log('rock pic click');
+	playRopasc('Rock');
+}
+function clickPaper() {
+	console.log('paper pic click');
+	playRopasc('Paper');
+}
+function clickScis() {
+	console.log('scis pic click');
+	playRopasc('Scissors');
+}
 
-const playerSignButtons = document.querySelectorAll('.player-sign button')
+
+const container = document.querySelector('#container');
+const compSign = document.querySelector('#oponent-hand');
+const playerSignButtons = document.querySelectorAll('.player-sign button');
+
 playerSignButtons.forEach((btn) => {btn.addEventListener('click', () => playRopasc(btn.id))});
+
+//const rockBtn = document.querySelector('#rockBtn');
+
+//rockBtn.addEventListener('click', clickRock());
 	
 
 
