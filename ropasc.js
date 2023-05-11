@@ -72,13 +72,15 @@ function gameEnd(winner) {
 	resetSigns();
 	resetPlayer(player);
 	resetPlayer(opponent);
+}
 
 function resetPlayer(pl) {
 	pl.scores = 0;
 	pl.scoresIcons.forEach((icon) => {icon.classList.remove('on')})
 }
 
-
+function tie() {
+	console.log('TIE')
 }
 
 function clickSign (btnId) { 
@@ -95,12 +97,15 @@ function clickSign (btnId) {
 		setTimeout(() => {
 			if (winner) {
 				updateWinnerScoreBar(winner);
-				if (winner.scores >= 5) {
-					gameEnd(winner);
-				}
-			}
+			} else {tie();}
 		}, 1000);
-		setTimeout(() => {resetSigns();}, 2000);
+
+		setTimeout(() => {
+			resetSigns();
+			if (winner && winner.scores >= 5) {
+				gameEnd(winner);
+				}
+		}, 2000);
 		
 	}
 
