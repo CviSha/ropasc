@@ -1,13 +1,13 @@
 class Player {
 
 	scores = 0;
-	constructer(row){
+	constructor(row){
 		this.scoreRow = row;
 	}
 }
 
 function genSign() {
-	const signs = ['Rock','Paper','Scissors']
+	const signs = ['rock_op','paper_op','scis_op']
 	return signs[Math.floor(Math.random()*3)]
 }
 
@@ -68,10 +68,29 @@ function signSelected(_btnId) { //after player choose sign, all buttons go inact
 	});
 }
 function oppSignSelected(sign) { //change '?' for oppSign 
-	return '';
+	oppSignIcon.src = `./pics/${sign}.png`
+	
 }
-function ropask(plSign, oppSign) { //ropask logic to find winner
-	return '';
+function ropasc(pl, opp) { //ropask logic to find winner
+	if (pl.slice(0,3) === opp.slice(0,3)) {
+		return null;
+		console.log('tie'); //TIE
+	} else {
+		switch(pl) {
+			case 'rockBtn' :
+				if (opp === 'scis_op') {
+					return 'player';
+				} else {return 'opponent'};
+			case 'scisBtn' :
+				if (opp === 'paper_op') {
+					return 'player';
+				} else {return 'opponent'};
+			case 'paperBtn' :
+				if (opp === 'rock_op') {
+					return 'player';
+				} else {return 'opponent'};
+		}
+	}
 }
 function updateWinnerScoreBar(winner) { //add score to winner score bar, and reset tasble. if someone got 5 scores, finish game. 
 	return '';
@@ -95,7 +114,12 @@ function clickSign (btnId) {
 		selectIsActive = false;
 		console.log(`${btnId} was clicked`);
 		signSelected(btnId);
-		oppSignSelected(genSign());
+		oppSign = genSign();
+
+		oppSignSelected(oppSign);
+
+		const winer = ropasc(btnId, oppSign);
+		console.log(`${winer}`)
 	}
 
 }
@@ -104,6 +128,7 @@ let selectIsActive = true;
 const container = document.querySelector('#container');
 const compSign = document.querySelector('#oponent-hand');
 const playerSignButtons = document.querySelectorAll('.player-sign img');
+const oppSignIcon = document.querySelector('.comp-sign img');
 
 //playerSignButtons.forEach((btn) => {btn.addEventListener('click', () => playRopasc(btn.id))});
 
