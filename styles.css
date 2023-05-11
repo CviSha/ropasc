@@ -21,6 +21,10 @@
 	background-color: gray;
 	border-radius: 3px;
 }
+.selected {
+	border: 5px green solid;
+	border-radius: 15px;
+}
 
 .comp-scores, .player-scores {
 	gap: 10px;
@@ -33,4 +37,8 @@
 	width: 80px;
 	border-radius: 4px;
 	background-color: aqua;
+}
+.comp-sign img {
+	width: 100px;
+	height: 100px;
 }

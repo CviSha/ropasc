@@ -8,7 +8,7 @@
   <body>
   	<h1>RockPaperScisors</h1>
   	<div id='container'>
-  		<div class='comp-scores row'>
+  		<div class='comp-scores row' id='oppScoreBoard'>
   			<div class='score'></div>
   			<div class='score'></div>
   			<div class='score'></div>
@@ -16,7 +16,8 @@
   			<div class='score'></div>
   		</div>
   		<div class='comp-sign row'>
-  			<div id='oponent-hand'class='comp-signBox signBox'></div>
+  			<!--<div id='oponent-hand'class='comp-signBox signBox'></div>-->
+  			<img src='./pics/undentified_op.png'>
   		</div>
   		<div class='player-sign row'>
   			<!--
@@ -24,11 +25,11 @@
   			<button id='Papper' class='paper-choose signBox'>Paper</button>
   			<button id='Scissors' class='scisors-choose signBox'>Scissors</button>
   		-->
-  			<img id= 'rockBtn' src='./pics/rock.png' onclick='clickRock();'>
-  			<img id= 'paperBtn' src='./pics/paper.png' onclick='clickPaper();'>
-  			<img id= 'scisBtn' src='./pics/scis.png' onclick='clickScis();'>
+  			<img id= 'rockBtn' src='./pics/rock.png' onclick='clickSign(this.id);'>
+  			<img id= 'paperBtn' src='./pics/paper.png' onclick='clickSign(this.id);'>
+  			<img id= 'scisBtn' src='./pics/scis.png' onclick='clickSign(this.id);'>
   		</div>
-  		<div class='player-scores row'>
+  		<div class='player-scores row' id='playerScoreBoard'>
   			<div class='score'></div>
   			<div class='score'></div>
   			<div class='score'></div>
