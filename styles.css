@@ -21,6 +21,9 @@
 	background-color: gray;
 	border-radius: 3px;
 }
+.on {
+	background-color: green;
+}
 .selected {
 	border: 5px green solid;
 	border-radius: 90px;

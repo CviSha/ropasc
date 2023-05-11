@@ -2,7 +2,7 @@ class Player {
 
 	scores = 0;
 	constructor(row){
-		this.scoreRow = row;
+		this.scoresIcons = row;
 	}
 }
 
@@ -11,59 +11,13 @@ function genSign() {
 	return signs[Math.floor(Math.random()*3)]
 }
 
-function playRopasc(player_sign) {
-	const opponentSign = genSign();
-
-	let round_status = '';
-	if (player_sign === opponentSign) {
-		round_status = 'TIE'
-	} else {
-		switch (player_sign) {
-			case 'Rock':
-				if (opponentSign === 'Scissors') {
-					round_status = 'You Win!'
-				} else {
-					round_status = 'You Loose!'
-				}
-				break;
-			case 'Paper':
-				if (opponentSign === 'Rock') {
-					round_status = 'You Win!'
-				} else {
-					round_status = 'You Loose!'
-				}
-				break;
-			case 'Scissors':
-				if (opponentSign === 'Paper') {
-					round_status = 'You Win!'
-				} else {
-					round_status = 'You Loose!'
-				}
-				break;
-		} 
-	}
-	let ans = 
-	console.log(`You show ${player_sign}, your opponents shows ${opponentSign}.${round_status}`)
-	return ans
-}
-
-function playRopask2(sign) {
-	signSelected(sign); // !
-	const opponentSign = genSign();
-	oppSignSelected(opponentSign); //!
-
-	const winner = ropask(sign, opponentSign); //!
-
-	updateWinnerScoreBar(winner);
-
-}
 function signSelected(_btnId) { //after player choose sign, all buttons go inactive less visible. selected sign is lighted up
 	// in -> id of selected button
 	playerSignButtons.forEach((btn) => {
 		if (btn.id == _btnId) {
-			btn.classList.toggle('selected');
+			btn.classList.add('selected');
 		} else {
-			btn.classList.toggle('low-opacity');
+			btn.classList.add('low-opacity');
 		}
 	});
 }
@@ -79,47 +33,75 @@ function ropasc(pl, opp) { //ropask logic to find winner
 		switch(pl) {
 			case 'rockBtn' :
 				if (opp === 'scis_op') {
-					return 'player';
-				} else {return 'opponent'};
+					return player;
+				} else {return opponent};
 			case 'scisBtn' :
 				if (opp === 'paper_op') {
-					return 'player';
-				} else {return 'opponent'};
+					return player;
+				} else {return opponent};
 			case 'paperBtn' :
 				if (opp === 'rock_op') {
-					return 'player';
-				} else {return 'opponent'};
+					return player;
+				} else {return opponent};
 		}
 	}
 }
-function updateWinnerScoreBar(winner) { //add score to winner score bar, and reset tasble. if someone got 5 scores, finish game. 
-	return '';
+function updateWinnerScoreBar(_winner) { //add score to winner score bar, and reset tasble. 
+//										if someone got 5 scores, finish game. 
+	_winner.scores++;
+	for (let i = 0; i < _winner.scores; i++) {
+		_winner.scoresIcons[i].classList.add('on');
+		console.log('adding scores')
+		}	
+}
+function resetSigns() {
+	oppSignIcon.src = './pics/undentified_op.png';
+	selectIsActive = true;
+	playerSignButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+		btn.classList.remove('low-opacity')
+	})
+
+}
+function gameEnd(winner) {
+	if (winner == player) {
+		alert('You Won!');
+	} else {
+		alert('You Loose!');
+	}
+	resetSigns();
+	resetPlayer(player);
+	resetPlayer(opponent);
+
+function resetPlayer(pl) {
+	pl.scores = 0;
+	pl.scoresIcons.forEach((icon) => {icon.classList.remove('on')})
 }
 
-function clickRock(_btn) {
-	console.log('rock pic click');
-	console.log(_btn.id)
-	playRopasc('Rock');
+
 }
-function clickPaper() {
-	console.log('paper pic click');
-	playRopasc('Paper');
-}
-function clickScis() {
-	console.log('scis pic click');
-	playRopasc('Scissors');
-}
-function clickSign (btnId) {
+
+function clickSign (btnId) { 
 	if (selectIsActive) {
 		selectIsActive = false;
 		console.log(`${btnId} was clicked`);
 		signSelected(btnId);
 		oppSign = genSign();
 
-		oppSignSelected(oppSign);
+		setTimeout(() => {oppSignSelected(oppSign);}, 500);
 
-		const winer = ropasc(btnId, oppSign);
-		console.log(`${winer}`)
+		const winner = ropasc(btnId, oppSign);
+
+		setTimeout(() => {
+			if (winner) {
+				updateWinnerScoreBar(winner);
+				if (winner.scores >= 5) {
+					gameEnd(winner);
+				}
+			}
+		}, 1000);
+		setTimeout(() => {resetSigns();}, 2000);
+		
 	}
 
 }
@@ -135,10 +117,10 @@ const oppSignIcon = document.querySelector('.comp-sign img');
 //const rockBtn = document.querySelector('#rockBtn');
 
 //rockBtn.addEventListener('click', clickRock());
-const oppScoreBoard = document.querySelector('#oppScoreBoard');
-const playerScoreBoard = document.querySelector('#playerScoreBoard');
-const opponent = new Player(oppScoreBoard);
-const player = new Player(playerScoreBoard);
+const oppScores = document.querySelectorAll('#oppScoreBoard .score');
+const playerScores = document.querySelectorAll('#playerScoreBoard .score');
+const opponent = new Player(oppScores);
+const player = new Player(playerScores);
 
 
 
