@@ -62,8 +62,9 @@ function signSelected(_btnId) { //after player choose sign, all buttons go inact
 	playerSignButtons.forEach((btn) => {
 		if (btn.id == _btnId) {
 			btn.classList.toggle('selected');
-		};
-		btn.classList.toggle('disabled');
+		} else {
+			btn.classList.toggle('low-opacity');
+		}
 	});
 }
 function oppSignSelected(sign) { //change '?' for oppSign 
@@ -90,12 +91,16 @@ function clickScis() {
 	playRopasc('Scissors');
 }
 function clickSign (btnId) {
-	console.log(`${btnId} was clicked`);
-	signSelected(btnId);
+	if (selectIsActive) {
+		selectIsActive = false;
+		console.log(`${btnId} was clicked`);
+		signSelected(btnId);
+		oppSignSelected(genSign());
+	}
 
 }
 
-
+let selectIsActive = true;
 const container = document.querySelector('#container');
 const compSign = document.querySelector('#oponent-hand');
 const playerSignButtons = document.querySelectorAll('.player-sign img');

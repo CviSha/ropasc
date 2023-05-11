@@ -23,7 +23,10 @@
 }
 .selected {
 	border: 5px green solid;
-	border-radius: 15px;
+	border-radius: 90px;
+}
+.low-opacity {
+	opacity: 0.4;
 }
 
 .comp-scores, .player-scores {
